@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.system.IDeptDao">
+    <!--建立实体类属性和数据库表的对应关系-->
+    <resultMap id="BaseResultMap" type="com.itheima.domain.system.Dept">
+        <id column="dept_id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="state" property="state"/>
+        <result column="company_id" property="companyId"/>
+        <result column="company_name" property="companyName"/>
+        <!--mybatis中的多对一配置，mybatis把多对一都看成了一对一
+            property：指定的是实体类中属性名称
+            column：指定的是用哪个字段当参数的值去查询
+            javaType：指定的是property对应的属性的数据类型
+            select：指定用哪个statement执行查询。
+                    statement指的是在mybatis映射配置中定义的配置。
+                    它组成由namespace+id。
+                    例如：com.itheima.dao.system.IDeptDao.findById
+
+                    select * from pe_dept where dept_id = 参数的值，用的就是column属性指定的值
+        -->
+        <association property="parent" column="parent_id" javaType="com.itheima.domain.system.Dept"
+                     select="com.itheima.dao.system.IDeptDao.findById"></association>
+    </resultMap>
+
+    <!--根据企业id查询全部-->
+    <select id="findAll" parameterType="string" resultMap="BaseResultMap">
+        select * from pe_dept where company_id=#{companyId}
+    </select>
+
+    <!--根据id查询-->
+    <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from pe_dept where dept_id = #{id}
+    </select>
+
+    <!--根据id删除-->
+    <delete id="delete" parameterType="java.lang.String">
+        delete from pe_dept where dept_id = #{id}
+    </delete>
+
+    <!--保存-->
+    <insert id="save" parameterType="com.itheima.domain.system.Dept">
+        insert into pe_dept (dept_id, dept_name, parent_id, state, company_id, company_name
+          )
+        values (#{id}, #{deptName}, #{parent.id}, #{state}, #{companyId}, #{companyName}
+          )
+    </insert>
+
+    <!--更新-->
+    <update id="update" parameterType="com.itheima.domain.system.Dept">
+        update pe_dept
+        set dept_name = #{deptName},
+          parent_id = #{parent.id},
+          state = #{state},
+          company_id = #{companyId},
+          company_name = #{companyName}
+        where dept_id = #{id}
+    </update>
+</mapper>
