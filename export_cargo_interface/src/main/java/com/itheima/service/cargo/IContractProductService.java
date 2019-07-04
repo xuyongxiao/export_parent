@@ -16,7 +16,6 @@ public interface IContractProductService {
 	 * 保存
 	 */
 	void save(ContractProduct contractProduct);
-//TODO khghjgjh
 	/**
 	 * 更新
 	 */
@@ -39,15 +38,11 @@ public interface IContractProductService {
 
 	/**
 	 * 查询厂家销售数量和厂家清单
-	 * @param companyId
-	 * @return
 	 */
     List findFactoryData(String companyId);
 
 	/**
 	 * 产品销量排行
-	 * @param companyId
-	 * @return
 	 */
 	List findSellDate(String companyId);
 
