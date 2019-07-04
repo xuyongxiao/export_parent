@@ -22,7 +22,7 @@
     <dubbo:application name="export_portal_web"></dubbo:application>
 
     <!--配置zookeeper-->
-    <dubbo:registry address="zookeeper://localhost:2181"></dubbo:registry>
+    <dubbo:registry address="zookeeper://192.168.180.129:2181"></dubbo:registry>
 
     <!--配置dubbo的注解扫描包-->
     <dubbo:annotation package="com.itheima.web"></dubbo:annotation>

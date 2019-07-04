@@ -20,7 +20,7 @@
     </dubbo:application>
 
     <!--配置注册中心的地址-->
-    <dubbo:registry address="zookeeper://172.16.36.129" port="2181"></dubbo:registry>
+    <dubbo:registry address="zookeeper://192.168.180.129" port="2181"></dubbo:registry>
 
     <!--配置dubbo提供者使用的协议和访问端口-->
     <dubbo:protocol name="dubbo" port="20882"></dubbo:protocol>

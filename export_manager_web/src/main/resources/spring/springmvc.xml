@@ -49,7 +49,7 @@
 	</dubbo:application>
 
 	<!--配置注册中心的地址-->
-	<dubbo:registry address="zookeeper://172.16.36.129:2181" timeout="5000"></dubbo:registry>
+	<dubbo:registry address="zookeeper://192.168.180.129:2181" timeout="5000"></dubbo:registry>
 
 	<!--配置dubbo扫描注解的包-->
 	<dubbo:annotation package="com.itheima.web" ></dubbo:annotation>
